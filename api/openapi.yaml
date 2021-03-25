@@ -1,0 +1,277 @@
+openapi: 3.0.0
+info:
+  title: Arth-Arbitrage
+  version: 0.0.1
+  description: Arth Arbitrage API
+  termsOfService: MIT
+servers:
+  - url: 'localhost:4000'
+    variables: {}
+    description: arth-arbitrage end-point
+paths:
+  /exchanges:
+    summary: exchange list
+    description: List of supported exchanges
+    get:
+      summary: Get exchange list
+      description: Get list of exchanges
+      operationId: listExchanges
+      responses:
+        '200':
+          description: A paged array of exchanges
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Exchanges'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/exchanges/{id}':
+    get:
+      summary: Exchange details
+      description: Details of the exchange
+      operationId: getExchange
+      parameters:
+        - name: id
+          in: path
+          description: ID of anaytics exchange to fetch
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: exchange response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Exchange'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/exchanges/{id}/pools':
+    get:
+      summary: Pool List
+      description: List of liquidity pools
+      operationId: getSwapPools
+      parameters:
+        - name: id
+          in: path
+          description: ID of exchange
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: exchange response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwapPools'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /lenders:
+    summary: Lending service
+    description: List of Lending service
+    get:
+      summary: Lending service list
+      description: List of lending services
+      operationId: listLenders
+      responses:
+        '200':
+          description: A paged array of lending services
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lenders'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/lenders/{id}':
+    get:
+      summary: Get lender
+      description: Returns a details of a lender
+      operationId: getLender
+      parameters:
+        - name: id
+          in: path
+          description: ID of lender
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: lender response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lender'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/lenders/{id}/pools':
+    get:
+      summary: Pool List
+      description: List of liquidity pools
+      operationId: getLenderPools
+      parameters:
+        - name: id
+          in: path
+          description: ID of exchange
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: exchange response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LenderPools'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+
+    Exchanges:
+      type: array
+      items:
+        $ref: '#/components/schemas/Exchange'
+    Exchange:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    SwapPools:
+      type: array
+      items:
+        $ref: '#/components/schemas/SwapPool'
+    SwapPool:
+      type: object
+      required:
+        - id
+        - name
+        - token0
+        - token1
+        - reserve0
+        - reserve1
+        - rate
+        - fees
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        token0:
+          type: integer
+          format: string
+        token1:
+          type: integer
+          format: string
+        reserve0:
+          type: integer
+          format: float
+        reserve1:
+          type: integer
+          format: float
+        rate:
+          type: integer
+          format: float
+        fees:
+          type: integer
+          format: float
+          
+    Lenders:
+      type: array
+      items:
+        $ref: '#/components/schemas/Lender'
+    Lender:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    LenderPools:
+      type: array
+      items:
+        $ref: '#/components/schemas/LenderPool'
+    LenderPool:
+      type: object
+      required:
+        - id
+        - name
+        - token
+        - reserve
+        - fees
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        token:
+          type: integer
+          format: string
+        reserve:
+          type: integer
+          format: float
+        fees:
+          type: integer
+          format: float
