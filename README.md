@@ -11,3 +11,8 @@ Go bindings of the contract API. The contract bindings for Lender or DEX is orga
 ## Code generation
 Server and Clinet codes are generated using swagger  
 https://editor.swagger.io/
+
+
+## Architecture
+
+![Architecture Diagram](docs/architecture.drawio.svg)
