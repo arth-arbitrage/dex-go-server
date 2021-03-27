@@ -9,9 +9,8 @@
 
 package restapi
 
-type Error struct {
-
-	Code int32 `json:"code"`
-
-	Message string `json:"message"`
+//Response return a ImplResponse struct filled
+func Response(code int, body interface{}) ImplResponse {
+	return ImplResponse{Code: code, Body: body}
 }
+

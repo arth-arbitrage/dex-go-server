@@ -9,9 +9,8 @@
 
 package restapi
 
-type Error struct {
-
-	Code int32 `json:"code"`
-
-	Message string `json:"message"`
+//Implementation response defines an error code with the associated body
+type ImplResponse struct {
+	Code int
+	Body interface{}
 }

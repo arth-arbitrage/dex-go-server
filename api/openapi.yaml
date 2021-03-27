@@ -206,7 +206,8 @@ components:
         - token1
         - reserve0
         - reserve1
-        - rate
+        - price0
+        - price1
         - fees
       properties:
         id:
@@ -224,7 +225,10 @@ components:
         reserve1:
           type: number
           format: float
-        rate:
+        price0:
+          type: number
+          format: float
+        price1:
           type: number
           format: float
         fees:
