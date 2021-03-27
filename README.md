@@ -18,7 +18,14 @@ https://editor.swagger.io/
 ![Architecture Diagram](docs/architecture.drawio.svg)
 
 ## Development
-Generate go resp api server from the openapi specification
+
+### Generate go resp api server from the openapi specification
 ```
 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate -i /local/api/openapi.yaml  -g go-server -o /local/go-server --package-name=restapi
+```
+
+### Running
+```
+export DEX_INFURAID="xxxxxxxxxxxxxxxxxxxxx"
+go run main.go
 ```
