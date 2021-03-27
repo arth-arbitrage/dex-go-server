@@ -11,7 +11,8 @@ type DexIf interface {
 }
 
 var dexList = []DexIf {
-	DexUniswapV2{name: "UniswapV2"},
+	&DexUniswapV2{name: "UniswapV2"},
+	&DexCurve{name: "Curve"},	
 }
 /*
 func AddDex(dex interface) {
