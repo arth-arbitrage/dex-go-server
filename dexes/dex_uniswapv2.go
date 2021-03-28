@@ -49,7 +49,7 @@ func (dex *DexUniswapV2)GetSwapPools(ctx *DefaultApiService) (restapi.ImplRespon
 	client := ctx.client
 	swapPools := make([]restapi.SwapPool, 0)
 	for i, token0 :=  range uniswapV2TokenList {
-		for _, token1 :=  range uniswapV2TokenList[i+1:] {
+		for j, token1 :=  range uniswapV2TokenList[i+1:] {
 			if (token0 != token1) {
 				fmt.Printf("Pair for %v %v\n", token0.name, token1.name)
 				opts  := bind.CallOpts{Pending: false}
@@ -90,8 +90,8 @@ func (dex *DexUniswapV2)GetSwapPools(ctx *DefaultApiService) (restapi.ImplRespon
 					p1_f32 := f0_f32/f1_f32
 
 					swapPool := restapi.SwapPool{
-						Id: 0, 
-						Name:"token0",
+						Id: int64(i*1000 + j), 
+						Name: pairAddr.Hex(),
 						Token0: from_token.name,
 						Token1: to_token.name,
 						Reserve0: f0_f32,

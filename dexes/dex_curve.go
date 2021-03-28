@@ -79,7 +79,7 @@ func (dex *DexCurve)Init(ctx *DefaultApiService) error {
 func (dex *DexCurve)GetSwapPools(ctx *DefaultApiService) (restapi.ImplResponse, error) {
 	swapPools := make([]restapi.SwapPool, 0)
 	for i, token0 :=  range curveTokenList {
-		for _, token1 :=  range curveTokenList[i+1:] {
+		for j, token1 :=  range curveTokenList[i+1:] {
 			if (token0 != token1) {
 				fmt.Printf("Pair for %v %v\n", token0.name, token1.name)
 				opts  := bind.CallOpts{Pending: false}
@@ -133,8 +133,8 @@ func (dex *DexCurve)GetSwapPools(ctx *DefaultApiService) (restapi.ImplResponse, 
 				}
 
 				swapPool := restapi.SwapPool{
-					Id: 0, 
-					Name:"token0",
+					Id: int64(i*1000 + j), 
+					Name: poolAddr.Hex(),
 					Token0: from_token.name,
 					Token1: to_token.name,
 					Reserve0: f0_f32,

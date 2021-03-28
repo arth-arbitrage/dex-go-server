@@ -54,7 +54,7 @@ func (lend *LendAave)Init(ctx *DefaultApiService) error {
 
 func (lend *LendAave)GetLenderPools(ctx *DefaultApiService) (restapi.ImplResponse, error) {
 	lenderPools := make([]restapi.LenderPool, 0)
-	for _, token :=  range aaveTokenList {
+	for i, token :=  range aaveTokenList {
 
 		fmt.Printf("Lending pool for %v\n", token.name,)
 		opts  := bind.CallOpts{Pending: false}
@@ -76,8 +76,8 @@ func (lend *LendAave)GetLenderPools(ctx *DefaultApiService) (restapi.ImplRespons
 		rate_f32, _ := rate.Float32()
 
 		lenderPool := restapi.LenderPool{
-			Id: 0, 
-			Name:"token0",
+			Id: int64(i), 
+			Name: token.address.Hex(),
 			Token: token.name,
 			Reserve: f0_f32,
 			Fees: rate_f32,
