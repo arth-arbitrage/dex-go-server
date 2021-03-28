@@ -26,19 +26,14 @@
  // Include any external packages or services that will be required by this service.
  type DefaultApiService struct {
 	context.Context
-
 	Config Config
 
 	Logger *logrus.Entry
-
 	Transactor *bind.TransactOpts
-
 	client *ethclient.Client
 	opts   *bind.TransactOpts
-	dexUniswapV2 *DexUniswapV2
-
  }
- 
+
  // NewDefaultApiService creates a default api service
  func NewDefaultApiService(config Config) (restapi.DefaultApiServicer, error) {
 
@@ -54,27 +49,34 @@
 	client, err := ethclient.Dial("https://mainnet.infura.io/v3/" + config.InfuraId)
 	if err != nil {
 		return nil, err
-	}	
-	return &DefaultApiService{
+	}
+	apiService := &DefaultApiService{
 		Config: config,
 		Logger: logrus.NewEntry(logger),
 		client: client,
-		dexUniswapV2: NewDexUniswapV2(),
-	 }, nil
+	}
+	for _, dex := range dexList{
+		err = dex.Init(apiService)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return apiService, nil
  }
  
+
  // GetExchange - Exchange details
  func (s *DefaultApiService) GetExchange(ctx context.Context, id int64) (restapi.ImplResponse, error) {
-	 // TODO - update GetExchange with the required logic for this service method.
-	 // Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
- 
-	 //TODO: Uncomment the next line to return response Response(200, Exchange{}) or use other options such as http.Ok ...
-	 //return Response(200, Exchange{}), nil
- 
-	 //TODO: Uncomment the next line to return response Response(0, Error{}) or use other options such as http.Ok ...
-	 //return Response(0, Error{}), nil
- 
-	 return restapi.Response(http.StatusNotImplemented, nil), errors.New("GetExchange method not implemented")
+
+	if(int(id) >= len(dexList)) {
+		return restapi.Response(http.StatusNotImplemented, nil), errors.New("Exchange unavailble")
+	}
+	name := dexList[id].Name(s)
+	exchange := &restapi.Exchange{
+		Id: id, 
+		Name:name,
+	}
+	return restapi.Response(http.StatusOK, exchange), nil
  }
  
  // GetLender - Get lender
@@ -107,31 +109,22 @@
  
  // GetSwapPools - Pool List
  func (s *DefaultApiService) GetSwapPools(ctx context.Context, id int64) (restapi.ImplResponse, error) {
-	 // TODO - update GetSwapPools with the required logic for this service method.
-	 // Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 	
 	 return dexList[id].GetSwapPools(s)
-	 //TODO: Uncomment the next line to return response Response(200, []SwapPool{}) or use other options such as http.Ok ...
-	 //return Response(200, []SwapPool{}), nil
- 
-	 //TODO: Uncomment the next line to return response Response(0, Error{}) or use other options such as http.Ok ...
-	 //return Response(0, Error{}), nil
- 
-	 //return restapi.Response(http.StatusNotImplemented, nil), errors.New("GetSwapPools method not implemented")
  }
  
  // ListExchanges - Get exchange list
  func (s *DefaultApiService) ListExchanges(ctx context.Context) (restapi.ImplResponse, error) {
-	 // TODO - update ListExchanges with the required logic for this service method.
-	 // Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
- 
-	 //TODO: Uncomment the next line to return response Response(200, []Exchange{}) or use other options such as http.Ok ...
-	 //return Response(200, []Exchange{}), nil
- 
-	 //TODO: Uncomment the next line to return response Response(0, Error{}) or use other options such as http.Ok ...
-	 //return Response(0, Error{}), nil
- 
-	 return restapi.Response(http.StatusNotImplemented, nil), errors.New("ListExchanges method not implemented")
+	exchanges := make([]restapi.Exchange, 0)
+	for i, dex := range dexList{
+		name := dex.Name(s)
+		exchange := &restapi.Exchange{
+			Id: int64(i), 
+			Name:name,
+		}
+		exchanges = append(exchanges, *exchange)
+	}
+	return restapi.Response(http.StatusOK, exchanges), nil
  }
  
  // ListLenders - Lending service list

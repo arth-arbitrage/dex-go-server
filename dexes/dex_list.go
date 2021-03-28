@@ -6,16 +6,12 @@ import (
 )
 
 type DexIf interface {
-	Name() string
+	Name(ctx *DefaultApiService) string
 	GetSwapPools(ctx *DefaultApiService) (restapi.ImplResponse, error)
+	Init(ctx *DefaultApiService) error
 }
 
 var dexList = []DexIf {
 	&DexUniswapV2{name: "UniswapV2"},
 	&DexCurve{name: "Curve"},	
 }
-/*
-func AddDex(dex interface) {
-	dexList = append(dexList, dex)
-}
-*/

@@ -26,60 +26,57 @@ type DexCurve struct {
 
 const curveAddressProviderAddr = "0x0000000022D53366457F9d5E68Ec105046FC4383"
 
-
-func NewDexCurve() *DexCurve {
-	return &DexCurve{ 
-		name: "curve",
-	}
-}
-
-func (dex DexCurve) Name() string {
+func (dex *DexCurve) Name(ctx *DefaultApiService) string {
 	return dex.name
 }
 
-func (dex *DexCurve)GetSwapPools(ctx *DefaultApiService) (restapi.ImplResponse, error) {
-	opts  := bind.CallOpts{Pending: false}
-	client := ctx.client
+
+func (dex *DexCurve)Init(ctx *DefaultApiService) error {
 	var err error
+	client:= ctx.client
+	opts  := bind.CallOpts{Pending: false}
 	dex.addressProvider, err = curvefi.NewAddressProvider(common.Address(common.HexToAddress(curveAddressProviderAddr)), client)
 	if (err != nil) { 
 		fmt.Printf("Failed to get curve address provider at %v",curveAddressProviderAddr)
-		return restapi.Response(http.StatusInternalServerError, nil), err 
+		return  err 
 	}
 	registryAddr, err := dex.addressProvider.GetRegistry(&opts)
 	if (err != nil) { 
 		fmt.Printf("Failed to cregetate Registry")
-		return restapi.Response(http.StatusInternalServerError, nil), err 
+		return  err 
 	}		
 
 	dex.registry, err = curvefi.NewRegistry(registryAddr, client)
 	if (err != nil) { 
 		fmt.Printf("Failed to create registry at %v",registryAddr)
-		return restapi.Response(http.StatusInternalServerError, nil), err 
+		return  err 
 	}
 	poolinfoAddr, err:= dex.addressProvider.GetAddress(&opts, big.NewInt(1))
 	if (err != nil) { 
 		fmt.Printf("Failed to get pool address %v",1)
-		return restapi.Response(http.StatusInternalServerError, nil), err 
+		return  err 
 	}	
 	dex.poolinfo, err = curvefi.NewPoolInfo(poolinfoAddr, client)
 	if (err != nil) { 
 		fmt.Printf("Failed to create PoolInfo swaps address %v",poolinfoAddr)
-		return restapi.Response(http.StatusInternalServerError, nil), err 
+		return  err 
 	}		
 
 	swapsAddr, err:= dex.addressProvider.GetAddress(&opts, big.NewInt(2))
 	if (err != nil) { 
 		fmt.Printf("Failed to get swaps address %v",2)
-		return restapi.Response(http.StatusInternalServerError, nil), err 
+		return  err 
 	}		
 	dex.swaps, err = curvefi.NewSwaps(swapsAddr, client)
 	if (err != nil) { 
 		fmt.Printf("Failed tocreate NewSwaps address %v",swapsAddr)
-		return restapi.Response(http.StatusInternalServerError, nil), err 
-	}		
+		return  err 
+	}			
+	return nil
+}
 
-	//router, err := uniswapv2.NewIUniswapV2Router02(common.Address(common.HexToAddress(routerAddress)), client)
+
+func (dex *DexCurve)GetSwapPools(ctx *DefaultApiService) (restapi.ImplResponse, error) {
 	swapPools := make([]restapi.SwapPool, 0)
 	for i, token0 :=  range curveTokenList {
 		for _, token1 :=  range curveTokenList[i+1:] {
@@ -151,9 +148,6 @@ func (dex *DexCurve)GetSwapPools(ctx *DefaultApiService) (restapi.ImplResponse, 
 			}
 		}
 	}
-	//jsonData, err := json.Marshal(swapPools)
-	//if err != nil {
-	//	return restapi.Response(http.StatusInternalServerError, nil), err
-	//}	
-	return restapi.Response(http.StatusOK, swapPools/*(string(jsonData)*/), nil	
+
+	return restapi.Response(http.StatusOK, swapPools), nil	
 }
