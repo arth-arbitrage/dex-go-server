@@ -61,6 +61,12 @@
 			return nil, err
 		}
 	}
+	for _, lend := range lendList{
+		err = lend.Init(apiService)
+		if err != nil {
+			return nil, err
+		}
+	}	
 	return apiService, nil
  }
  
@@ -81,35 +87,30 @@
  
  // GetLender - Get lender
  func (s *DefaultApiService) GetLender(ctx context.Context, id int64) (restapi.ImplResponse, error) {
-	 // TODO - update GetLender with the required logic for this service method.
-	 // Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
- 
-	 //TODO: Uncomment the next line to return response Response(200, Lender{}) or use other options such as http.Ok ...
-	 //return Response(200, Lender{}), nil
- 
-	 //TODO: Uncomment the next line to return response Response(0, Error{}) or use other options such as http.Ok ...
-	 //return Response(0, Error{}), nil
- 
-	 return restapi.Response(http.StatusNotImplemented, nil), errors.New("GetLender method not implemented")
+	if(int(id) >= len(lendList)) {
+		return restapi.Response(http.StatusNotImplemented, nil), errors.New("Lender unavailble")
+	}
+	name := lendList[id].Name(s)
+	lender := &restapi.Lender{
+		Id: id, 
+		Name:name,
+	}
+	return restapi.Response(http.StatusOK, lender), nil
  }
  
  // GetLenderPools - Pool List
  func (s *DefaultApiService) GetLenderPools(ctx context.Context, id int64) (restapi.ImplResponse, error) {
-	 // TODO - update GetLenderPools with the required logic for this service method.
-	 // Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
- 
-	 //TODO: Uncomment the next line to return response Response(200, []LenderPool{}) or use other options such as http.Ok ...
-	 //return Response(200, []LenderPool{}), nil
- 
-	 //TODO: Uncomment the next line to return response Response(0, Error{}) or use other options such as http.Ok ...
-	 //return Response(0, Error{}), nil
- 
-	 return restapi.Response(http.StatusNotImplemented, nil), errors.New("GetLenderPools method not implemented")
+	if(int(id) >= len(lendList)) {
+		return restapi.Response(http.StatusNotImplemented, nil), errors.New("Lender unavailble")
+	}
+	return lendList[id].GetLenderPools(s)
  }
  
  // GetSwapPools - Pool List
  func (s *DefaultApiService) GetSwapPools(ctx context.Context, id int64) (restapi.ImplResponse, error) {
-	
+	if(int(id) >= len(dexList)) {
+		return restapi.Response(http.StatusNotImplemented, nil), errors.New("Exchange unavailble")
+	}
 	 return dexList[id].GetSwapPools(s)
  }
  
@@ -129,16 +130,16 @@
  
  // ListLenders - Lending service list
  func (s *DefaultApiService) ListLenders(ctx context.Context) (restapi.ImplResponse, error) {
-	 // TODO - update ListLenders with the required logic for this service method.
-	 // Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
- 
-	 //TODO: Uncomment the next line to return response Response(200, []Lender{}) or use other options such as http.Ok ...
-	 //return Response(200, []Lender{}), nil
- 
-	 //TODO: Uncomment the next line to return response Response(0, Error{}) or use other options such as http.Ok ...
-	 //return Response(0, Error{}), nil
- 
-	 return restapi.Response(http.StatusNotImplemented, nil), errors.New("ListLenders method not implemented")
+	lenders := make([]restapi.Lender, 0)
+	for i, lender := range lendList{
+		name := lender.Name(s)
+		lender := &restapi.Lender{
+			Id: int64(i), 
+			Name:name,
+		}
+		lenders = append(lenders, *lender)
+	}
+	return restapi.Response(http.StatusOK, lenders), nil
  }
  
  

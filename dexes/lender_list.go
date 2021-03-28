@@ -1,13 +1,15 @@
 package dexes
 
 import (
-
+	"github.com/arth-arbitrage/dex-go-server/go"
 )
 
-type LenderIf interface {
-	Name() string
+type LendIf interface {
+	Name(ctx *DefaultApiService) string
+	GetLenderPools(ctx *DefaultApiService) (restapi.ImplResponse, error)
+	Init(ctx *DefaultApiService) error
 }
 
-var lenderList []interface {
-	//Dex{name:"aave"},
+var lendList = []LendIf {
+	&LendAave{name:"aave"},
 }
