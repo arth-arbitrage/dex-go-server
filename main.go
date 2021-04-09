@@ -15,6 +15,7 @@ import (
 
 	restapi "github.com/arth-arbitrage/dex-go-server/go"
 	"github.com/arth-arbitrage/dex-go-server/dexes"
+	"github.com/rs/cors"
 )
 
 func main() {
@@ -30,5 +31,7 @@ func main() {
 
 	router := restapi.NewRouter(DefaultApiController)
 
-	log.Fatal(http.ListenAndServe(":4000", router))
+	handler := cors.Default().Handler(router)
+	//log.Fatal(http.ListenAndServe(":4000", router))
+	log.Fatal(http.ListenAndServe(":4000", handler))
 }
