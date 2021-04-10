@@ -21,6 +21,7 @@ json_files = [
     {"input": "ILendingPool.json", "output": "ILendingPool.abi"},
     {"input": "ArthArbV1MultiSwap.json", "output": "ArthArbV1MultiSwap.abi"},
     {"input": "AaveArbMultiSwapV1.json", "output": "AaveArbMultiSwapV1.abi"},
+    {"input": "ArthLending.json", "output": "ArthLending.abi"},    
 ]
 
 for json_file in json_files:

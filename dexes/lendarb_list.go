@@ -11,6 +11,6 @@ type MultiswapIf interface {
 }
 
 var lendarbList = []MultiswapIf {
-	&ArthLendArb{name:"arthmultiswap"},
-	&AaveLendArb{name:"aavemultiswap"},	
+	&ArthLendArb{name:"arth"},
+	&AaveLendArb{name:"aave"},	
 }

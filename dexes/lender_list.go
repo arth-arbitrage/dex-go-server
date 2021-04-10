@@ -12,4 +12,5 @@ type LendIf interface {
 
 var lendList = []LendIf {
 	&LendAave{name:"aave"},
+	&LendArth{name:"arth"},	
 }
