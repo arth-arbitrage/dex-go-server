@@ -18,7 +18,9 @@ abi_files = [
     {"input": "IUniswapv2Swap.abi", "output": "IUniswapv2Swap.go",  "package_name": "uniswapv2", "type_name": "IUniswapv2Swap"},
 
     {"input": "ILendingPoolAddressesProvider.abi", "output": "ILendingPoolAddressesProvider.go",  "package_name": "aave", "type_name": "ILendingPoolAddressesProvider"},
-    {"input": "ILendingPool.abi", "output": "ILendingPool.go", "package_name": "aave", "type_name": "ILendingPool"},    
+    {"input": "ILendingPool.abi", "output": "ILendingPool.go", "package_name": "aave", "type_name": "ILendingPool"},   
+    {"input": "ArthArbV1MultiSwap.abi", "output": "ArthArbV1MultiSwap.go", "package_name": "arbitrage", "type_name": "ArthArbV1MultiSwap"},
+    {"input": "AaveArbMultiSwapV1.abi", "output": "AaveArbMultiSwapV1.go", "package_name": "arbitrage", "type_name": "AaveArbMultiSwapV1"},    
 ]
 
 def generate_go(input, output, package_name, type_name):

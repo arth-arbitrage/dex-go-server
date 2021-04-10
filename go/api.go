@@ -26,6 +26,8 @@ type DefaultApiRouter interface {
 	GetSwapPools(http.ResponseWriter, *http.Request)
 	ListExchanges(http.ResponseWriter, *http.Request)
 	ListLenders(http.ResponseWriter, *http.Request)
+	Multiswap(http.ResponseWriter, *http.Request)
+	Swap(http.ResponseWriter, *http.Request)
 }
 
 
@@ -40,4 +42,6 @@ type DefaultApiServicer interface {
 	GetSwapPools(context.Context, int64) (ImplResponse, error)
 	ListExchanges(context.Context) (ImplResponse, error)
 	ListLenders(context.Context) (ImplResponse, error)
+	Multiswap(context.Context, MultiSwap) (ImplResponse, error)
+	Swap(context.Context, Swap) (ImplResponse, error)
 }

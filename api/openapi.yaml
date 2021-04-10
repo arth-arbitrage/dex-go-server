@@ -164,6 +164,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  '/swap':
+    post:
+      summary: process swap 
+      description: Process swap transaction
+      operationId: swap
+      requestBody:
+        description: Swap to be perfomed
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Swap'
+      responses:
+        '201':
+          description: Created              
+        '422':
+          description: Failed     
+  '/multiswap':
+    post:
+      summary: process swap 
+      description: Process swap transaction
+      operationId: multiswap
+      requestBody:
+        description: Swap to be perfomed
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultiSwap'
+      responses:
+        '201':
+          description: Created              
+        '422':
+          description: Failed    
+          
 components:
   schemas:
     Error:
@@ -276,3 +311,31 @@ components:
         fees:
           type: number
           format: float
+    Swap:
+      type: object
+      required:
+        - amount
+        - token0
+        - token1
+        - exchange
+      properties:
+        token0:
+          type: string
+        token1:
+          type: string
+        amount:
+          type: number
+          format: float
+        exchange:
+          type: integer
+          format: int64
+    MultiSwap:
+      type: object
+      properties:
+        lender:
+          type: integer
+          format: int64
+        swaps:
+          type: array
+          items:
+            $ref: '#/components/schemas/Swap'

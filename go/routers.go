@@ -10,7 +10,7 @@
 package restapi
 
 import (
-	"mime/multipart"
+	"mime/multipart"	
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
@@ -51,6 +51,7 @@ func NewRouter(routers ...Router) *mux.Router {
 				Handler(handler)
 		}
 	}
+
 	return router
 }
 

@@ -110,3 +110,31 @@ func (s *DefaultApiService) ListLenders(ctx context.Context) (ImplResponse, erro
 	return Response(http.StatusNotImplemented, nil), errors.New("ListLenders method not implemented")
 }
 
+// Multiswap - process swap
+func (s *DefaultApiService) Multiswap(ctx context.Context, multiSwap MultiSwap) (ImplResponse, error) {
+	// TODO - update Multiswap with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(201, {}) or use other options such as http.Ok ...
+	//return Response(201, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(422, {}) or use other options such as http.Ok ...
+	//return Response(422, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("Multiswap method not implemented")
+}
+
+// Swap - process swap
+func (s *DefaultApiService) Swap(ctx context.Context, swap Swap) (ImplResponse, error) {
+	// TODO - update Swap with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(201, {}) or use other options such as http.Ok ...
+	//return Response(201, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(422, {}) or use other options such as http.Ok ...
+	//return Response(422, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("Swap method not implemented")
+}
+

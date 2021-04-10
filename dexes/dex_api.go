@@ -66,7 +66,14 @@
 		if err != nil {
 			return nil, err
 		}
-	}	
+	}
+	for _, multiswap := range multiswapList{
+		err = multiswap.Init(apiService)
+		if err != nil {
+			return nil, err
+		}
+	}
+		
 	return apiService, nil
  }
  
@@ -142,4 +149,32 @@
 	return restapi.Response(http.StatusOK, lenders), nil
  }
  
+ // Multiswap - process swap
+func (s *DefaultApiService) Multiswap(ctx context.Context, multiswap restapi.MultiSwap) (restapi.ImplResponse, error) {
+	// TODO - update Multiswap with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(201, {}) or use other options such as http.Ok ...
+	//return Response(201, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(422, {}) or use other options such as http.Ok ...
+	//return Response(422, nil),nil
+	return multiswapList[0].Multiswap(s, multiswap)
+	//return restapi.Response(http.StatusNotImplemented, nil), errors.New("Multiswap method not implemented")
+}
+
+// Swap - process swap
+func (s *DefaultApiService) Swap(ctx context.Context, swap restapi.Swap) (restapi.ImplResponse, error) {
+	// TODO - update Swap with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(201, {}) or use other options such as http.Ok ...
+	//return Response(201, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(422, {}) or use other options such as http.Ok ...
+	//return Response(422, nil),nil
+
+	return restapi.Response(http.StatusNotImplemented, nil), errors.New("Swap method not implemented")
+}
+
  

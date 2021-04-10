@@ -10,7 +10,7 @@
 package restapi
 
 import (
-	//"encoding/json"
+	"encoding/json"
 	"net/http"
 	"strings"
 
@@ -65,6 +65,18 @@ func (c *DefaultApiController) Routes() Routes {
 			strings.ToUpper("Get"),
 			"/lenders",
 			c.ListLenders,
+		},
+		{
+			"Multiswap",
+			strings.ToUpper("Post"),
+			"/multiswap",
+			c.Multiswap,
+		},
+		{
+			"Swap",
+			strings.ToUpper("Post"),
+			"/swap",
+			c.Swap,
 		},
 	}
 }
@@ -161,6 +173,44 @@ func (c *DefaultApiController) ListExchanges(w http.ResponseWriter, r *http.Requ
 // ListLenders - Lending service list
 func (c *DefaultApiController) ListLenders(w http.ResponseWriter, r *http.Request) { 
 	result, err := c.service.ListLenders(r.Context())
+	//If an error occured, encode the error with the status code
+	if err != nil {
+		EncodeJSONResponse(err.Error(), &result.Code, w)
+		return
+	}
+	//If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+	
+}
+
+// Multiswap - process swap
+func (c *DefaultApiController) Multiswap(w http.ResponseWriter, r *http.Request) { 
+	multiSwap := &MultiSwap{}
+	if err := json.NewDecoder(r.Body).Decode(&multiSwap); err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	
+	result, err := c.service.Multiswap(r.Context(), *multiSwap)
+	//If an error occured, encode the error with the status code
+	if err != nil {
+		EncodeJSONResponse(err.Error(), &result.Code, w)
+		return
+	}
+	//If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+	
+}
+
+// Swap - process swap
+func (c *DefaultApiController) Swap(w http.ResponseWriter, r *http.Request) { 
+	swap := &Swap{}
+	if err := json.NewDecoder(r.Body).Decode(&swap); err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	
+	result, err := c.service.Swap(r.Context(), *swap)
 	//If an error occured, encode the error with the status code
 	if err != nil {
 		EncodeJSONResponse(err.Error(), &result.Code, w)
