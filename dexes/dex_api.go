@@ -67,8 +67,8 @@
 			return nil, err
 		}
 	}
-	for _, multiswap := range multiswapList{
-		err = multiswap.Init(apiService)
+	for _, lendarb := range lendarbList{
+		err = lendarb.Init(apiService)
 		if err != nil {
 			return nil, err
 		}
@@ -159,7 +159,8 @@ func (s *DefaultApiService) Multiswap(ctx context.Context, multiswap restapi.Mul
 
 	//TODO: Uncomment the next line to return response Response(422, {}) or use other options such as http.Ok ...
 	//return Response(422, nil),nil
-	return multiswapList[0].Multiswap(s, multiswap)
+	// TODO get lender
+	return lendarbList[0].Multiswap(s, multiswap)
 	//return restapi.Response(http.StatusNotImplemented, nil), errors.New("Multiswap method not implemented")
 }
 

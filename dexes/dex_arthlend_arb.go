@@ -15,29 +15,22 @@ import (
 	"github.com/arth-arbitrage/dex-go-server/go"
 )
 
-type DexMultiswap struct {
+type ArthLendArb struct {
 	name string
-	arthLendArb *arbitrage.AaveArbMultiSwapV1
-	aaveLendArb *arbitrage.ArthArbV1MultiSwap
+	arthLendArb *arbitrage.ArthArbV1MultiSwap
 }
 
 
-const aaveArbMultiSwapV1Address string = "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f"
 const arthArbV1MultiSwapAddress string = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
 
-func (dex DexMultiswap) Name(ctx *DefaultApiService) string {
+func (dex ArthLendArb) Name(ctx *DefaultApiService) string {
 	return dex.name
 }
 
-func (dex *DexMultiswap) Init(ctx *DefaultApiService) error {
+func (dex *ArthLendArb) Init(ctx *DefaultApiService) error {
 	var err error
 	client := ctx.client
-	dex.arthLendArb, err = arbitrage.NewAaveArbMultiSwapV1(common.Address(common.HexToAddress(aaveArbMultiSwapV1Address)), client)
-	if (err != nil) { 
-		fmt.Printf("Failed to get arthArbV1MultiSwap at %v",aaveArbMultiSwapV1Address)
-		return err
-	}
-	dex.aaveLendArb, err = arbitrage.NewArthArbV1MultiSwap(common.Address(common.HexToAddress(arthArbV1MultiSwapAddress)), client)
+	dex.arthLendArb, err = arbitrage.NewArthArbV1MultiSwap(common.Address(common.HexToAddress(arthArbV1MultiSwapAddress)), client)
 	if (err != nil) { 
 		fmt.Printf("Failed to get arthArbV1MultiSwap at %v",arthArbV1MultiSwapAddress)
 		return err
@@ -45,7 +38,7 @@ func (dex *DexMultiswap) Init(ctx *DefaultApiService) error {
 	return nil
 }
 	
-func (dex *DexMultiswap) Multiswap(ctx *DefaultApiService, multiSwap restapi.MultiSwap) (restapi.ImplResponse, error) {
+func (dex *ArthLendArb) Multiswap(ctx *DefaultApiService, multiSwap restapi.MultiSwap) (restapi.ImplResponse, error) {
 	//client := ctx.client
 /*	
 	swapPools := make([]restapi.SwapPool, 0)

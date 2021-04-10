@@ -10,6 +10,7 @@ type MultiswapIf interface {
 	Init(ctx *DefaultApiService) error
 }
 
-var multiswapList = []MultiswapIf {
-	&DexMultiswap{name:"multiswap"},
+var lendarbList = []MultiswapIf {
+	&ArthLendArb{name:"arthmultiswap"},
+	&AaveLendArb{name:"aavemultiswap"},	
 }
