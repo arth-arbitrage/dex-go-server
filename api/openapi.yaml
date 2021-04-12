@@ -175,7 +175,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Swap'
+              $ref: '#/components/schemas/SwapExec'
       responses:
         '201':
           description: Created              
@@ -192,7 +192,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MultiSwap'
+              $ref: '#/components/schemas/MultiSwapExec'
       responses:
         '201':
           description: Created              
@@ -222,12 +222,16 @@ components:
       required:
         - id
         - name
+        - swapwrap
       properties:
         id:
           type: integer
           format: int64
         name:
           type: string
+        swapwrap:
+          type: string
+          
     SwapPools:
       type: array
       items:
@@ -279,12 +283,15 @@ components:
       required:
         - id
         - name
+        - loanwrap
       properties:
         id:
           type: integer
           format: int64
         name:
           type: string
+        loanwrap:
+          type: string          
     LenderPools:
       type: array
       items:
@@ -311,13 +318,13 @@ components:
         fees:
           type: number
           format: float
-    Swap:
+    SwapExec:
       type: object
       required:
         - amount
         - token0
         - token1
-        - exchange
+        - exchangeSwapWrap
       properties:
         token0:
           type: string
@@ -326,16 +333,23 @@ components:
         amount:
           type: number
           format: float
-        exchange:
-          type: integer
-          format: int64
-    MultiSwap:
+        exchangeSwapWrap:
+          type: string
+        swapPool:
+          type: string
+          
+    MultiSwapExec:
       type: object
       properties:
-        lender:
-          type: integer
-          format: int64
+        loanwrap:
+          type: string
         swaps:
           type: array
           items:
-            $ref: '#/components/schemas/Swap'
+            $ref: '#/components/schemas/SwapExec'
+    MultiSwapExecSigned:
+      type: object
+      properties:
+        transactoin:
+          type: string
+     
