@@ -79,6 +79,9 @@ func (lend *LendAave)GetLenderPools(ctx *DefaultApiService) (restapi.ImplRespons
 			Id: int64(i), 
 			Name: token.address.Hex(),
 			Token: token.name,
+			TokenAddress: token.address.Hex(),
+			LenderWrap: aaveAddressProviderAddr, // TODO
+			Lender: aaveAddressProviderAddr, // TODO			
 			Reserve: f0_f32,
 			Fees: rate_f32,
 		}

@@ -21,10 +21,10 @@ type DexCurve struct {
 	registry *curvefi.Registry
 	poolinfo *curvefi.PoolInfo
 	swaps *curvefi.Swaps
-	
 }
 
 const curveAddressProviderAddr = "0x0000000022D53366457F9d5E68Ec105046FC4383"
+const curveSwapWrapAddress string = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
 
 func (dex *DexCurve) Name(ctx *DefaultApiService) string {
 	return dex.name
@@ -71,7 +71,7 @@ func (dex *DexCurve)Init(ctx *DefaultApiService) error {
 	if (err != nil) { 
 		fmt.Printf("Failed tocreate NewSwaps address %v",swapsAddr)
 		return  err 
-	}			
+	}	
 	return nil
 }
 
@@ -137,6 +137,10 @@ func (dex *DexCurve)GetSwapPools(ctx *DefaultApiService) (restapi.ImplResponse, 
 					Name: poolAddr.Hex(),
 					Token0: from_token.name,
 					Token1: to_token.name,
+					Token0Address: from_token.address.Hex(),
+					Token1Address: to_token.address.Hex(),
+					SwapWrap: uniswapv2SwapWrapAddress,
+					Pool: poolAddr.Hex(),					
 					Reserve0: f0_f32,
 					Reserve1: f1_f32,
 					Price0:p0_f32,

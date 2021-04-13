@@ -185,13 +185,13 @@ func (c *DefaultApiController) ListLenders(w http.ResponseWriter, r *http.Reques
 
 // Multiswap - process swap
 func (c *DefaultApiController) Multiswap(w http.ResponseWriter, r *http.Request) { 
-	multiSwap := &MultiSwap{}
-	if err := json.NewDecoder(r.Body).Decode(&multiSwap); err != nil {
+	multiSwapExec := &MultiSwapExec{}
+	if err := json.NewDecoder(r.Body).Decode(&multiSwapExec); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 	
-	result, err := c.service.Multiswap(r.Context(), *multiSwap)
+	result, err := c.service.Multiswap(r.Context(), *multiSwapExec)
 	//If an error occured, encode the error with the status code
 	if err != nil {
 		EncodeJSONResponse(err.Error(), &result.Code, w)
@@ -204,13 +204,13 @@ func (c *DefaultApiController) Multiswap(w http.ResponseWriter, r *http.Request)
 
 // Swap - process swap
 func (c *DefaultApiController) Swap(w http.ResponseWriter, r *http.Request) { 
-	swap := &Swap{}
-	if err := json.NewDecoder(r.Body).Decode(&swap); err != nil {
+	swapExec := &SwapExec{}
+	if err := json.NewDecoder(r.Body).Decode(&swapExec); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 	
-	result, err := c.service.Swap(r.Context(), *swap)
+	result, err := c.service.Swap(r.Context(), *swapExec)
 	//If an error occured, encode the error with the status code
 	if err != nil {
 		EncodeJSONResponse(err.Error(), &result.Code, w)

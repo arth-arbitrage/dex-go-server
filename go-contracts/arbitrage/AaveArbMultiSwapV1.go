@@ -27,7 +27,7 @@ var (
 )
 
 // AaveArbMultiSwapV1ABI is the input ABI used to generate the binding from.
-const AaveArbMultiSwapV1ABI = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_addressProvider\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_assetAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"LogWithdraw\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"addressesProvider\",\"outputs\":[{\"internalType\":\"contractILendingPoolAddressesProvider\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"lender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"loanAsset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"path\",\"type\":\"address[]\"}],\"name\":\"arbitrage\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_reserve\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_fee\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_params\",\"type\":\"bytes\"}],\"name\":\"executeOperation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_assetAddress\",\"type\":\"address\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}]"
+const AaveArbMultiSwapV1ABI = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_addressProvider\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_assetAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"LogWithdraw\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_reserve\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_fee\",\"type\":\"uint256\"}],\"name\":\"borrowMade\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"addressesProvider\",\"outputs\":[{\"internalType\":\"contractILendingPoolAddressesProvider\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"lender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"loanAsset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"path\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"amounts\",\"type\":\"uint256[]\"}],\"name\":\"arbitrage\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_reserve\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_fee\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_params\",\"type\":\"bytes\"}],\"name\":\"executeOperation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_assetAddress\",\"type\":\"address\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}]"
 
 // AaveArbMultiSwapV1 is an auto generated Go binding around an Ethereum contract.
 type AaveArbMultiSwapV1 struct {
@@ -233,25 +233,25 @@ func (_AaveArbMultiSwapV1 *AaveArbMultiSwapV1CallerSession) Owner() (common.Addr
 	return _AaveArbMultiSwapV1.Contract.Owner(&_AaveArbMultiSwapV1.CallOpts)
 }
 
-// Arbitrage is a paid mutator transaction binding the contract method 0xf9b97cd6.
+// Arbitrage is a paid mutator transaction binding the contract method 0x14dd1de6.
 //
-// Solidity: function arbitrage(address lender, address loanAsset, uint256 amount, address[] path) returns()
-func (_AaveArbMultiSwapV1 *AaveArbMultiSwapV1Transactor) Arbitrage(opts *bind.TransactOpts, lender common.Address, loanAsset common.Address, amount *big.Int, path []common.Address) (*types.Transaction, error) {
-	return _AaveArbMultiSwapV1.contract.Transact(opts, "arbitrage", lender, loanAsset, amount, path)
+// Solidity: function arbitrage(address lender, address loanAsset, uint256 amount, address[] path, uint256[] amounts) returns()
+func (_AaveArbMultiSwapV1 *AaveArbMultiSwapV1Transactor) Arbitrage(opts *bind.TransactOpts, lender common.Address, loanAsset common.Address, amount *big.Int, path []common.Address, amounts []*big.Int) (*types.Transaction, error) {
+	return _AaveArbMultiSwapV1.contract.Transact(opts, "arbitrage", lender, loanAsset, amount, path, amounts)
 }
 
-// Arbitrage is a paid mutator transaction binding the contract method 0xf9b97cd6.
+// Arbitrage is a paid mutator transaction binding the contract method 0x14dd1de6.
 //
-// Solidity: function arbitrage(address lender, address loanAsset, uint256 amount, address[] path) returns()
-func (_AaveArbMultiSwapV1 *AaveArbMultiSwapV1Session) Arbitrage(lender common.Address, loanAsset common.Address, amount *big.Int, path []common.Address) (*types.Transaction, error) {
-	return _AaveArbMultiSwapV1.Contract.Arbitrage(&_AaveArbMultiSwapV1.TransactOpts, lender, loanAsset, amount, path)
+// Solidity: function arbitrage(address lender, address loanAsset, uint256 amount, address[] path, uint256[] amounts) returns()
+func (_AaveArbMultiSwapV1 *AaveArbMultiSwapV1Session) Arbitrage(lender common.Address, loanAsset common.Address, amount *big.Int, path []common.Address, amounts []*big.Int) (*types.Transaction, error) {
+	return _AaveArbMultiSwapV1.Contract.Arbitrage(&_AaveArbMultiSwapV1.TransactOpts, lender, loanAsset, amount, path, amounts)
 }
 
-// Arbitrage is a paid mutator transaction binding the contract method 0xf9b97cd6.
+// Arbitrage is a paid mutator transaction binding the contract method 0x14dd1de6.
 //
-// Solidity: function arbitrage(address lender, address loanAsset, uint256 amount, address[] path) returns()
-func (_AaveArbMultiSwapV1 *AaveArbMultiSwapV1TransactorSession) Arbitrage(lender common.Address, loanAsset common.Address, amount *big.Int, path []common.Address) (*types.Transaction, error) {
-	return _AaveArbMultiSwapV1.Contract.Arbitrage(&_AaveArbMultiSwapV1.TransactOpts, lender, loanAsset, amount, path)
+// Solidity: function arbitrage(address lender, address loanAsset, uint256 amount, address[] path, uint256[] amounts) returns()
+func (_AaveArbMultiSwapV1 *AaveArbMultiSwapV1TransactorSession) Arbitrage(lender common.Address, loanAsset common.Address, amount *big.Int, path []common.Address, amounts []*big.Int) (*types.Transaction, error) {
+	return _AaveArbMultiSwapV1.Contract.Arbitrage(&_AaveArbMultiSwapV1.TransactOpts, lender, loanAsset, amount, path, amounts)
 }
 
 // ExecuteOperation is a paid mutator transaction binding the contract method 0xee872558.
@@ -660,6 +660,142 @@ func (_AaveArbMultiSwapV1 *AaveArbMultiSwapV1Filterer) WatchOwnershipTransferred
 func (_AaveArbMultiSwapV1 *AaveArbMultiSwapV1Filterer) ParseOwnershipTransferred(log types.Log) (*AaveArbMultiSwapV1OwnershipTransferred, error) {
 	event := new(AaveArbMultiSwapV1OwnershipTransferred)
 	if err := _AaveArbMultiSwapV1.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// AaveArbMultiSwapV1BorrowMadeIterator is returned from FilterBorrowMade and is used to iterate over the raw logs and unpacked data for BorrowMade events raised by the AaveArbMultiSwapV1 contract.
+type AaveArbMultiSwapV1BorrowMadeIterator struct {
+	Event *AaveArbMultiSwapV1BorrowMade // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *AaveArbMultiSwapV1BorrowMadeIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(AaveArbMultiSwapV1BorrowMade)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(AaveArbMultiSwapV1BorrowMade)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *AaveArbMultiSwapV1BorrowMadeIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *AaveArbMultiSwapV1BorrowMadeIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// AaveArbMultiSwapV1BorrowMade represents a BorrowMade event raised by the AaveArbMultiSwapV1 contract.
+type AaveArbMultiSwapV1BorrowMade struct {
+	Reserve common.Address
+	Amount  *big.Int
+	Fee     *big.Int
+	Raw     types.Log // Blockchain specific contextual infos
+}
+
+// FilterBorrowMade is a free log retrieval operation binding the contract event 0xcd8f01cf11df8ac6e385851ab2495f5370eff19deb3c99a29b542b49d32ba0ba.
+//
+// Solidity: event borrowMade(address _reserve, uint256 _amount, uint256 _fee)
+func (_AaveArbMultiSwapV1 *AaveArbMultiSwapV1Filterer) FilterBorrowMade(opts *bind.FilterOpts) (*AaveArbMultiSwapV1BorrowMadeIterator, error) {
+
+	logs, sub, err := _AaveArbMultiSwapV1.contract.FilterLogs(opts, "borrowMade")
+	if err != nil {
+		return nil, err
+	}
+	return &AaveArbMultiSwapV1BorrowMadeIterator{contract: _AaveArbMultiSwapV1.contract, event: "borrowMade", logs: logs, sub: sub}, nil
+}
+
+// WatchBorrowMade is a free log subscription operation binding the contract event 0xcd8f01cf11df8ac6e385851ab2495f5370eff19deb3c99a29b542b49d32ba0ba.
+//
+// Solidity: event borrowMade(address _reserve, uint256 _amount, uint256 _fee)
+func (_AaveArbMultiSwapV1 *AaveArbMultiSwapV1Filterer) WatchBorrowMade(opts *bind.WatchOpts, sink chan<- *AaveArbMultiSwapV1BorrowMade) (event.Subscription, error) {
+
+	logs, sub, err := _AaveArbMultiSwapV1.contract.WatchLogs(opts, "borrowMade")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(AaveArbMultiSwapV1BorrowMade)
+				if err := _AaveArbMultiSwapV1.contract.UnpackLog(event, "borrowMade", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseBorrowMade is a log parse operation binding the contract event 0xcd8f01cf11df8ac6e385851ab2495f5370eff19deb3c99a29b542b49d32ba0ba.
+//
+// Solidity: event borrowMade(address _reserve, uint256 _amount, uint256 _fee)
+func (_AaveArbMultiSwapV1 *AaveArbMultiSwapV1Filterer) ParseBorrowMade(log types.Log) (*AaveArbMultiSwapV1BorrowMade, error) {
+	event := new(AaveArbMultiSwapV1BorrowMade)
+	if err := _AaveArbMultiSwapV1.contract.UnpackLog(event, "borrowMade", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log

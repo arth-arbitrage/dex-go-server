@@ -9,11 +9,7 @@
 
 package restapi
 
-type SwapPool struct {
-
-	Id int64 `json:"id"`
-
-	Name string `json:"name"`
+type SwapExec struct {
 
 	Token0 string `json:"token0"`
 
@@ -23,21 +19,13 @@ type SwapPool struct {
 
 	Decimals1 int64 `json:"decimals1"`
 
-	SwapWrap string `json:"swapWrap"`
-
-	Pool string `json:"pool"`
-
 	Token0Address string `json:"token0Address"`
 
 	Token1Address string `json:"token1Address"`
 
-	Reserve0 float32 `json:"reserve0"`
+	Amount float32 `json:"amount"`
 
-	Reserve1 float32 `json:"reserve1"`
+	SwapWrap string `json:"swapWrap,omitempty"`
 
-	Price0 float32 `json:"price0"`
-
-	Price1 float32 `json:"price1"`
-
-	Fees float32 `json:"fees"`
+	Pool string `json:"pool,omitempty"`
 }

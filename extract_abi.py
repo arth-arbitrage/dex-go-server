@@ -21,7 +21,11 @@ json_files = [
     {"input": "ILendingPool.json", "output": "ILendingPool.abi"},
     {"input": "ArthArbV1MultiSwap.json", "output": "ArthArbV1MultiSwap.abi"},
     {"input": "AaveArbMultiSwapV1.json", "output": "AaveArbMultiSwapV1.abi"},
-    {"input": "ArthLending.json", "output": "ArthLending.abi"},    
+    {"input": "ArthLending.json", "output": "ArthLending.abi"},
+    {"input": "SwapWrapUniv2.json", "output": "SwapWrapUniv2.abi"},
+    {"input": "SwapWrapCurve.json", "output": "SwapWrapCurve.abi"},
+    {"input": "SwapWrapArthV1.json", "output": "SwapWrapArthV1.abi"},    
+    {"input": "IArthArbV1MultiSwap.json", "output": "IArthArbV1MultiSwap.abi"},    
 ]
 
 for json_file in json_files:

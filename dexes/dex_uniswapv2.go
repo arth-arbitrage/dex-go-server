@@ -23,10 +23,12 @@ type DexUniswapV2 struct {
 
 const uniswapv2FactoryAddress string = "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f"
 const uniswapv2RouterAddress string = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
+const uniswapv2SwapWrapAddress string = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
 
 func (dex DexUniswapV2) Name(ctx *DefaultApiService) string {
 	return dex.name
 }
+
 
 func (dex *DexUniswapV2) Init(ctx *DefaultApiService) error {
 	var err error
@@ -43,7 +45,6 @@ func (dex *DexUniswapV2) Init(ctx *DefaultApiService) error {
 	}
 	return nil
 }
-	
 
 func (dex *DexUniswapV2)GetSwapPools(ctx *DefaultApiService) (restapi.ImplResponse, error) {
 	client := ctx.client
@@ -94,6 +95,10 @@ func (dex *DexUniswapV2)GetSwapPools(ctx *DefaultApiService) (restapi.ImplRespon
 						Name: pairAddr.Hex(),
 						Token0: from_token.name,
 						Token1: to_token.name,
+						Token0Address: from_token.address.Hex(),
+						Token1Address: to_token.address.Hex(),
+						SwapWrap: uniswapv2SwapWrapAddress,
+						Pool: pairAddr.Hex(),
 						Reserve0: f0_f32,
 						Reserve1: f1_f32,
 						Price0:p0_f32,

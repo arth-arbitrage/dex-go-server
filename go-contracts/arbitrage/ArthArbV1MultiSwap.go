@@ -27,7 +27,7 @@ var (
 )
 
 // ArthArbV1MultiSwapABI is the input ABI used to generate the binding from.
-const ArthArbV1MultiSwapABI = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_registryAddressr\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"name\":\"Received\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_reserve\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_fee\",\"type\":\"uint256\"}],\"name\":\"borrowMade\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"tradeMade\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"lender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"loanAsset\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"path\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"amounts\",\"type\":\"uint256[]\"}],\"name\":\"arbitrage\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"swapWrapp\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"pool\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"token0\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"token1\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amountOut\",\"type\":\"uint256\"}],\"name\":\"exchange\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_reserve\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_fee\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_params\",\"type\":\"bytes\"}],\"name\":\"executeOperation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}]"
+const ArthArbV1MultiSwapABI = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_registryAddressr\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"name\":\"Received\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_reserve\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_fee\",\"type\":\"uint256\"}],\"name\":\"borrowMade\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"tradeMade\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"lender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"loanAsset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"path\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"amounts\",\"type\":\"uint256[]\"}],\"name\":\"arbitrage\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"swapWrapp\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"pool\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"token0\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"token1\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amountOut\",\"type\":\"uint256\"}],\"name\":\"exchange\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_reserve\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_fee\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_params\",\"type\":\"bytes\"}],\"name\":\"executeOperation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}]"
 
 // ArthArbV1MultiSwap is an auto generated Go binding around an Ethereum contract.
 type ArthArbV1MultiSwap struct {
@@ -171,25 +171,25 @@ func (_ArthArbV1MultiSwap *ArthArbV1MultiSwapTransactorRaw) Transact(opts *bind.
 	return _ArthArbV1MultiSwap.Contract.contract.Transact(opts, method, params...)
 }
 
-// Arbitrage is a paid mutator transaction binding the contract method 0xe983cac1.
+// Arbitrage is a paid mutator transaction binding the contract method 0x14dd1de6.
 //
-// Solidity: function arbitrage(address lender, address loanAsset, address[] path, uint256[] amounts) returns()
-func (_ArthArbV1MultiSwap *ArthArbV1MultiSwapTransactor) Arbitrage(opts *bind.TransactOpts, lender common.Address, loanAsset common.Address, path []common.Address, amounts []*big.Int) (*types.Transaction, error) {
-	return _ArthArbV1MultiSwap.contract.Transact(opts, "arbitrage", lender, loanAsset, path, amounts)
+// Solidity: function arbitrage(address lender, address loanAsset, uint256 amount, address[] path, uint256[] amounts) returns()
+func (_ArthArbV1MultiSwap *ArthArbV1MultiSwapTransactor) Arbitrage(opts *bind.TransactOpts, lender common.Address, loanAsset common.Address, amount *big.Int, path []common.Address, amounts []*big.Int) (*types.Transaction, error) {
+	return _ArthArbV1MultiSwap.contract.Transact(opts, "arbitrage", lender, loanAsset, amount, path, amounts)
 }
 
-// Arbitrage is a paid mutator transaction binding the contract method 0xe983cac1.
+// Arbitrage is a paid mutator transaction binding the contract method 0x14dd1de6.
 //
-// Solidity: function arbitrage(address lender, address loanAsset, address[] path, uint256[] amounts) returns()
-func (_ArthArbV1MultiSwap *ArthArbV1MultiSwapSession) Arbitrage(lender common.Address, loanAsset common.Address, path []common.Address, amounts []*big.Int) (*types.Transaction, error) {
-	return _ArthArbV1MultiSwap.Contract.Arbitrage(&_ArthArbV1MultiSwap.TransactOpts, lender, loanAsset, path, amounts)
+// Solidity: function arbitrage(address lender, address loanAsset, uint256 amount, address[] path, uint256[] amounts) returns()
+func (_ArthArbV1MultiSwap *ArthArbV1MultiSwapSession) Arbitrage(lender common.Address, loanAsset common.Address, amount *big.Int, path []common.Address, amounts []*big.Int) (*types.Transaction, error) {
+	return _ArthArbV1MultiSwap.Contract.Arbitrage(&_ArthArbV1MultiSwap.TransactOpts, lender, loanAsset, amount, path, amounts)
 }
 
-// Arbitrage is a paid mutator transaction binding the contract method 0xe983cac1.
+// Arbitrage is a paid mutator transaction binding the contract method 0x14dd1de6.
 //
-// Solidity: function arbitrage(address lender, address loanAsset, address[] path, uint256[] amounts) returns()
-func (_ArthArbV1MultiSwap *ArthArbV1MultiSwapTransactorSession) Arbitrage(lender common.Address, loanAsset common.Address, path []common.Address, amounts []*big.Int) (*types.Transaction, error) {
-	return _ArthArbV1MultiSwap.Contract.Arbitrage(&_ArthArbV1MultiSwap.TransactOpts, lender, loanAsset, path, amounts)
+// Solidity: function arbitrage(address lender, address loanAsset, uint256 amount, address[] path, uint256[] amounts) returns()
+func (_ArthArbV1MultiSwap *ArthArbV1MultiSwapTransactorSession) Arbitrage(lender common.Address, loanAsset common.Address, amount *big.Int, path []common.Address, amounts []*big.Int) (*types.Transaction, error) {
+	return _ArthArbV1MultiSwap.Contract.Arbitrage(&_ArthArbV1MultiSwap.TransactOpts, lender, loanAsset, amount, path, amounts)
 }
 
 // Exchange is a paid mutator transaction binding the contract method 0x74c5bbf7.

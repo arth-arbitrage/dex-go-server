@@ -42,6 +42,6 @@ type DefaultApiServicer interface {
 	GetSwapPools(context.Context, int64) (ImplResponse, error)
 	ListExchanges(context.Context) (ImplResponse, error)
 	ListLenders(context.Context) (ImplResponse, error)
-	Multiswap(context.Context, MultiSwap) (ImplResponse, error)
-	Swap(context.Context, Swap) (ImplResponse, error)
+	Multiswap(context.Context, MultiSwapExec) (ImplResponse, error)
+	Swap(context.Context, SwapExec) (ImplResponse, error)
 }

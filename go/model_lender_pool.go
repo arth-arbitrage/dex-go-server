@@ -17,6 +17,14 @@ type LenderPool struct {
 
 	Token string `json:"token"`
 
+	Decimals int64 `json:"decimals"`
+
+	TokenAddress string `json:"tokenAddress"`
+
+	Lender string `json:"lender"`
+
+	LenderWrap string `json:"lenderWrap"`
+
 	Reserve float32 `json:"reserve"`
 
 	Fees float32 `json:"fees"`

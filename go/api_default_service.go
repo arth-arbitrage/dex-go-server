@@ -111,7 +111,7 @@ func (s *DefaultApiService) ListLenders(ctx context.Context) (ImplResponse, erro
 }
 
 // Multiswap - process swap
-func (s *DefaultApiService) Multiswap(ctx context.Context, multiSwap MultiSwap) (ImplResponse, error) {
+func (s *DefaultApiService) Multiswap(ctx context.Context, multiSwapExec MultiSwapExec) (ImplResponse, error) {
 	// TODO - update Multiswap with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -125,7 +125,7 @@ func (s *DefaultApiService) Multiswap(ctx context.Context, multiSwap MultiSwap) 
 }
 
 // Swap - process swap
-func (s *DefaultApiService) Swap(ctx context.Context, swap Swap) (ImplResponse, error) {
+func (s *DefaultApiService) Swap(ctx context.Context, swapExec SwapExec) (ImplResponse, error) {
 	// TODO - update Swap with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
