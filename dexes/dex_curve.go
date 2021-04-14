@@ -23,9 +23,6 @@ type DexCurve struct {
 	swaps *curvefi.Swaps
 }
 
-const curveAddressProviderAddr = "0x0000000022D53366457F9d5E68Ec105046FC4383"
-const curveSwapWrapAddress string = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
-
 func (dex *DexCurve) Name(ctx *DefaultApiService) string {
 	return dex.name
 }
@@ -35,9 +32,9 @@ func (dex *DexCurve)Init(ctx *DefaultApiService) error {
 	var err error
 	client:= ctx.client
 	opts  := bind.CallOpts{Pending: false}
-	dex.addressProvider, err = curvefi.NewAddressProvider(common.Address(common.HexToAddress(curveAddressProviderAddr)), client)
+	dex.addressProvider, err = curvefi.NewAddressProvider(common.Address(common.HexToAddress(ctx.Config.CurveAddressProvider)), client)
 	if (err != nil) { 
-		fmt.Printf("Failed to get curve address provider at %v",curveAddressProviderAddr)
+		fmt.Printf("Failed to get curve address provider at %v",ctx.Config.CurveAddressProvider)
 		return  err 
 	}
 	registryAddr, err := dex.addressProvider.GetRegistry(&opts)
@@ -139,7 +136,7 @@ func (dex *DexCurve)GetSwapPools(ctx *DefaultApiService) (restapi.ImplResponse, 
 					Token1: to_token.name,
 					Token0Address: from_token.address.Hex(),
 					Token1Address: to_token.address.Hex(),
-					SwapWrap: uniswapv2SwapWrapAddress,
+					SwapWrap: ctx.Config.CurveSwapWrap,
 					Pool: poolAddr.Hex(),					
 					Reserve0: f0_f32,
 					Reserve1: f1_f32,

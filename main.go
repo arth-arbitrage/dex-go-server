@@ -11,21 +11,33 @@ package main
 
 import (
 	"log"
+	"os"
 	"net/http"
-
+	flag "github.com/spf13/pflag"
 	restapi "github.com/arth-arbitrage/dex-go-server/go"
 	"github.com/arth-arbitrage/dex-go-server/dexes"
 	"github.com/rs/cors"
 )
 
 func main() {
-	config := dexes.NewConfig() 
+
+	configFilePath := ""
+	flag.StringVarP(&configFilePath, "config", "c", "config.json", "Configuraton file.")
+	flag.Parse()
+	config, err := dexes.GetConfig(configFilePath) 	
+	if(err != nil) {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+	log.Printf("configFilePath  %v", configFilePath)
 	log.Printf("Server started %v", config.InfuraId)
+
 
 	//DefaultApiService := restapi.NewDefaultApiService()
 	DefaultApiService, err := dexes.NewDefaultApiService(config)
 	if(err != nil) {
 		log.Fatal(err)
+		os.Exit(1)
 	}
 	DefaultApiController := restapi.NewDefaultApiController(DefaultApiService)
 

@@ -20,9 +20,6 @@ type LendArth struct {
 	lendingPool *arth.ArthLending
 }
 
-const arthLenderWrapAddress = "0x24a42fD28C976A61Df5D00D0599C34c4f90748c8"
-const lenderAddress = "0x24a42fD28C976A61Df5D00D0599C34c4f90748c8"
-
 func (lend *LendArth) Name(ctx *DefaultApiService) string {
 	return lend.name
 }
@@ -34,9 +31,9 @@ func (lend *LendArth)Init(ctx *DefaultApiService) error {
 	//opts  := bind.CallOpts{Pending: false}
 		
 
-	lend.lendingPool, err = arth.NewArthLending(common.Address(common.HexToAddress(arthLenderWrapAddress)), client)
+	lend.lendingPool, err = arth.NewArthLending(common.Address(common.HexToAddress(ctx.Config.ArthLending)), client)
 	if (err != nil) { 
-		fmt.Printf("Failed to create lendingPool at %v",arthLenderWrapAddress)
+		fmt.Printf("Failed to create lendingPool at %v",ctx.Config.ArthLending)
 		return  err 
 	}		
 	return nil
@@ -72,8 +69,8 @@ func (lend *LendArth)GetLenderPools(ctx *DefaultApiService) (restapi.ImplRespons
 			Name: token.address.Hex(),
 			Token: token.name,
 			TokenAddress: token.address.Hex(),
-			LenderWrap: arthLenderWrapAddress,
-			Lender: lenderAddress,
+			LenderWrap: ctx.Config.ArthArbV1MultiSwap,
+			Lender: ctx.Config.ArthLending,
 			Reserve: f0_f32,
 			Fees: rate_f32,
 		}

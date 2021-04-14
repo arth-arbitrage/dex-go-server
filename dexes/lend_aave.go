@@ -21,8 +21,6 @@ type LendAave struct {
 	lendingPool *aave.ILendingPool
 }
 
-const aaveAddressProviderAddr = "0x24a42fD28C976A61Df5D00D0599C34c4f90748c8"
-
 func (lend *LendAave) Name(ctx *DefaultApiService) string {
 	return lend.name
 }
@@ -32,9 +30,9 @@ func (lend *LendAave)Init(ctx *DefaultApiService) error {
 	var err error
 	client:= ctx.client
 	opts  := bind.CallOpts{Pending: false}
-	lend.addressProvider, err = aave.NewILendingPoolAddressesProvider(common.Address(common.HexToAddress(aaveAddressProviderAddr)), client)
+	lend.addressProvider, err = aave.NewILendingPoolAddressesProvider(common.Address(common.HexToAddress(ctx.Config.AaveAddressProvider)), client)
 	if (err != nil) { 
-		fmt.Printf("Failed to get aave address provider at %v",aaveAddressProviderAddr)
+		fmt.Printf("Failed to get aave address provider at %v",ctx.Config.AaveAddressProvider)
 		return  err 
 	}
 	lendingPoolAddr, err := lend.addressProvider.GetLendingPool(&opts)
@@ -80,8 +78,8 @@ func (lend *LendAave)GetLenderPools(ctx *DefaultApiService) (restapi.ImplRespons
 			Name: token.address.Hex(),
 			Token: token.name,
 			TokenAddress: token.address.Hex(),
-			LenderWrap: aaveAddressProviderAddr, // TODO
-			Lender: aaveAddressProviderAddr, // TODO			
+			LenderWrap: ctx.Config.AaveArbMultiSwapV1, // TODO
+			Lender: ctx.Config.AaveAddressProvider, // TODO			
 			Reserve: f0_f32,
 			Fees: rate_f32,
 		}

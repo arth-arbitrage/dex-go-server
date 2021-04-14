@@ -21,10 +21,6 @@ type DexUniswapV2 struct {
 	routerv2 *uniswapv2.IUniswapV2Router02
 }
 
-const uniswapv2FactoryAddress string = "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f"
-const uniswapv2RouterAddress string = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
-const uniswapv2SwapWrapAddress string = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
-
 func (dex DexUniswapV2) Name(ctx *DefaultApiService) string {
 	return dex.name
 }
@@ -33,14 +29,14 @@ func (dex DexUniswapV2) Name(ctx *DefaultApiService) string {
 func (dex *DexUniswapV2) Init(ctx *DefaultApiService) error {
 	var err error
 	client := ctx.client
-	dex.factory, err = uniswapv2.NewIUniswapV2Factory(common.Address(common.HexToAddress(uniswapv2FactoryAddress)), client)
+	dex.factory, err = uniswapv2.NewIUniswapV2Factory(common.Address(common.HexToAddress(ctx.Config.UniswapV2Factory)), client)
 	if (err != nil) { 
-		fmt.Printf("Failed to get factory at %v",uniswapv2FactoryAddress)
+		fmt.Printf("Failed to get factory at %v",ctx.Config.UniswapV2Factory)
 		return err
 	}
-	dex.routerv2, err = uniswapv2.NewIUniswapV2Router02(common.Address(common.HexToAddress(uniswapv2RouterAddress)), client)
+	dex.routerv2, err = uniswapv2.NewIUniswapV2Router02(common.Address(common.HexToAddress(ctx.Config.UniswapV2Router02)), client)
 	if (err != nil) { 
-		fmt.Printf("Failed to get router at %v",uniswapv2RouterAddress)
+		fmt.Printf("Failed to get router at %v",ctx.Config.UniswapV2Router02)
 		return err
 	}
 	return nil
@@ -97,7 +93,7 @@ func (dex *DexUniswapV2)GetSwapPools(ctx *DefaultApiService) (restapi.ImplRespon
 						Token1: to_token.name,
 						Token0Address: from_token.address.Hex(),
 						Token1Address: to_token.address.Hex(),
-						SwapWrap: uniswapv2SwapWrapAddress,
+						SwapWrap: ctx.Config.Uniswapv2SwapWrap,
 						Pool: pairAddr.Hex(),
 						Reserve0: f0_f32,
 						Reserve1: f1_f32,

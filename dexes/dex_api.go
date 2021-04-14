@@ -26,7 +26,7 @@
  // Include any external packages or services that will be required by this service.
  type DefaultApiService struct {
 	context.Context
-	Config Config
+	Config *Config
 
 	Logger *logrus.Entry
 	Transactor *bind.TransactOpts
@@ -35,7 +35,7 @@
  }
 
  // NewDefaultApiService creates a default api service
- func NewDefaultApiService(config Config) (restapi.DefaultApiServicer, error) {
+ func NewDefaultApiService(config *Config) (restapi.DefaultApiServicer, error) {
 
 	logger := logrus.New()
 	logLevel, err := logrus.ParseLevel(config.LogLevel)
