@@ -46,7 +46,7 @@
 	logger.SetFormatter(stackdriver.NewFormatter(
 		stackdriver.WithService("dexapi"),
 	))
-	client, err := ethclient.Dial("https://mainnet.infura.io/v3/" + config.InfuraId)
+	client, err := ethclient.Dial(config.Web3Provider)
 	if err != nil {
 		return nil, err
 	}

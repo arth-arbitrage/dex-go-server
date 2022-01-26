@@ -30,7 +30,7 @@ func main() {
 		os.Exit(1)
 	}
 	log.Printf("configFilePath  %v", configFilePath)
-	log.Printf("Server started %v", config.InfuraId)
+	log.Printf("Server started %v", config.Web3Provider)
 
 
 	//DefaultApiService := restapi.NewDefaultApiService()

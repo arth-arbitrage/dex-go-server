@@ -3,7 +3,6 @@
 package dexes
 
 import (
-    "log"
 	"time"
     "fmt"
     "io/ioutil"
@@ -12,9 +11,9 @@ import (
 )
  
 type Config struct {
-	LogLevel	string `default:"trace"`
+    LogLevel	string `default:"trace"`
     Timeout     time.Duration `default:"10m"`
-    InfuraId    string `required:"true"`
+    Web3Provider        string
     // Contract Addresses
     AaveAddressProvider string  `default:"0x24a42fD28C976A61Df5D00D0599C34c4f90748c8"`
     AaveArbMultiSwapV1  string
@@ -30,15 +29,6 @@ type Config struct {
     ArthLending         string
 }
 
-// get configuration from environment variable
-func NewConfig() Config {
-	var config Config
-    err := envconfig.Process("dex", &config)	
-    if err != nil {
-        log.Fatal(err.Error())
-    }
-	return config
-}
 
 func GetConfig(path string) (*Config, error) {
 	conf := Config{}
